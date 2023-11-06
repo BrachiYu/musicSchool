@@ -1,14 +1,30 @@
 # musicSchoolבית ספר לנגינהmusic-School / 
 תיאור הפרויקט
 בית ספר ללימודי נגינה
+
+
 ישויות
+
+
 מורים-name, instrument , price,  id 
+
+
 תלמידים- name, instrument, age, id 
+
+
 כלי נגינה למכירה- price, type, qty, id
 
+
+
 מיפוי routes  למורים 
+
+
 שליפת שמות מורים
+
+
 http://musicSchool.co.il/teachers :GET
+
+
 שליפת מורה לפי קוד
 http://musicSchool.co.il/teachers/1  :GET
 הוספת מורה
