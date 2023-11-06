@@ -71,7 +71,7 @@ http://musicSchool.co.il/students :GET
 שליפת תלמיד לפי קוד
 
 
-http://musicSchool.co.il/students /1  :GET
+http://musicSchool.co.il/students/1  :GET
 
 
 הוספת תלמיד
@@ -83,7 +83,7 @@ http://musicSchool.co.il/students  :POST
 מחיקת תלמיד
 
 
-http://musicSchool.co.il/students /1  :DELETE
+http://musicSchool.co.il/students/1  :DELETE
 
 
 עדכון כלי נגינה תלמיד
@@ -105,7 +105,7 @@ http://musicSchool.co.il/insrtruments  :GET
 שליפת כלי נגינה לפי קוד
 
 
-http://musicSchool.co.il/insrtruments /1  :GET
+http://musicSchool.co.il/insrtruments/1  :GET
 
 
 הוספת כלי נגינה
@@ -117,13 +117,13 @@ http://musicSchool.co.il/insrtruments  :POST
 מחיקת כלי נגינה
 
 
-http://musicSchool.co.il/insrtruments /1  :DELETE
+http://musicSchool.co.il/insrtruments/1  :DELETE
 
 
 עדכון כמות כלי נגינה
 
 
-http://musicSchool.co.il/insrtruments /1/qty  :PUT
+http://musicSchool.co.il/insrtruments/1/qty  :PUT
 
 
 
