@@ -1,5 +1,8 @@
 # musicSchoolבית ספר לנגינהmusic-School / 
+בית ספר לנגינהmusic-School / 
 תיאור הפרויקט
+
+
 בית ספר ללימודי נגינה
 
 
@@ -12,7 +15,7 @@
 תלמידים- name, instrument, age, id 
 
 
-כלי נגינה למכירה- price, type, qty, id
+כלי נגינה למכירה- price, name, qty, id
 
 
 
@@ -43,10 +46,10 @@ http://musicSchool.co.il/teachers POST
 http://musicSchool.co.il/teachers/1  :DELETE
 
 
-עדכון מורה
+עדכון כלי נגינה למורה
 
 
-http://musicSchool.co.il/teachers/1  :PUT
+http://musicSchool.co.il/teachers/1/instrument  :PUT
 
 
 עדכון מחיר מורה
@@ -83,13 +86,6 @@ http://musicSchool.co.il/students  :POST
 http://musicSchool.co.il/students /1  :DELETE
 
 
-עדכון תלמיד
-
-
-
-http://musicSchool.co.il/students/1  :PUT
-
-
 עדכון כלי נגינה תלמיד
 
 
@@ -101,8 +97,6 @@ http://musicSchool.co.il/teachers/1/instrument  :PUT
 
 
 שליפת כלי נגינה
-
-
 
 
 http://musicSchool.co.il/insrtruments  :GET
@@ -126,14 +120,12 @@ http://musicSchool.co.il/insrtruments  :POST
 http://musicSchool.co.il/insrtruments /1  :DELETE
 
 
-עדכון כלי נגינה
+עדכון כמות כלי נגינה
 
 
-http://musicSchool.co.il/insrtruments /1  :PUT
+http://musicSchool.co.il/insrtruments /1/qty  :PUT
 
 
-עדכון מחיר כלי נגינה
-http://musicSchool.co.il/insrtruments /1/price :PUT 
 
 
 
