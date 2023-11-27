@@ -11,20 +11,24 @@ namespace musicSchool.Controllers
     [ApiController]
     public class InstrumentController : ControllerBase
     {
-        private static List<Instrument> instruments = new List<Instrument> { new Instrument { id = 1 ,
-            name="defaultName",qty=0 ,price = 0} };
+        private DataContext _context;
+        public InstrumentController(DataContext context)
+        {
+            _context= context;
+        }
+        
         // GET: api/<InstrumentController>
         [HttpGet]
         public List<Instrument> Get()
-        {
-            return instruments;
+        { 
+            return _context.InsList;
         }
 
         // GET api/<InstrumentController>/5
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
-            var i = instruments.Find(e => e.id == id);
+            var i = _context.InsList.Find(e => e.id == id);
             if (i != null) 
                 return Ok(i);
             return NotFound();
@@ -35,7 +39,7 @@ namespace musicSchool.Controllers
         public Instrument Post([FromBody] Instrument ins)
         {
             ins.id++;
-            instruments.Add(ins);
+            _context.InsList.Add(ins);
             return ins;
         }
 
@@ -43,7 +47,7 @@ namespace musicSchool.Controllers
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] int qty)
         {
-            var i = instruments.Find(e => e.id == id);
+            var i = _context.InsList.Find(e => e.id == id);
             if(i != null) { 
                 i.qty = qty;
                 return Ok();
@@ -56,10 +60,10 @@ namespace musicSchool.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            var i = instruments.Find(e => e.id == id);
+            var i = _context.InsList.Find(e => e.id == id);
             if( i != null)
             {
-                instruments.Remove(i);
+                _context.InsList.Remove(i);
                 return Ok();
             }
             return NotFound();

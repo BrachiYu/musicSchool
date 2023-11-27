@@ -9,20 +9,24 @@ namespace musicSchool.Controllers
     [ApiController]
     public class StudentController : ControllerBase
     {
-        private static List<Student> students = new List<Student> { new Student { id = 1 ,
-            name="defaultName",instrument="defaultInstrument",age = 0} };
+        private DataContext _context;
+
+        public StudentController(DataContext context)
+        {
+            _context = context;
+        }
         // GET: api/<StudentController>
         [HttpGet]
         public List<Student> Get()
         {
-            return students;
+            return _context.StuList;
         }
 
         // GET api/<StudentController>/5
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
-            var s = students.Find(e => e.id == id);
+            var s = _context.StuList.Find(e => e.id == id);
             if (s != null)
                return Ok(s);
             return NotFound();
@@ -33,7 +37,7 @@ namespace musicSchool.Controllers
         public Student Post([FromBody] Student stu)
         {
             stu.id++;
-            students.Add(stu);
+            _context.StuList.Add(stu);
             return stu;
         }
 
@@ -41,7 +45,7 @@ namespace musicSchool.Controllers
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] string ins)
         {
-            var s = students.Find(e => e.id == id);
+            var s = _context.StuList.Find(e => e.id == id);
             if(s != null) { 
             s.instrument = ins;
                 return Ok();
@@ -53,9 +57,9 @@ namespace musicSchool.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            var del=students.Find(e => e.id == id);
-            if (del != null) { 
-            students.Remove(del);
+            var del= _context.StuList.Find(e => e.id == id);
+            if (del != null) {
+                _context.StuList.Remove(del);
                 return Ok();
             }
             return NotFound();
