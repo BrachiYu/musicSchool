@@ -1,4 +1,7 @@
-using musicSchool;
+using musicSchool.API;
+using musicSchool.Data;
+using musicShool.Core.Repositories;
+using musicShool.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +15,8 @@ builder.Services.AddCors(opt => opt.AddPolicy("Policy", policy => {
 policy.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
 }));
 
+builder.Services.AddScoped<InstrumentService>();
+builder.Services.AddScoped<IInstrumentRepository, InstrumentRepository>();
 builder.Services.AddSingleton<DataContext>();
 var app = builder.Build();
 

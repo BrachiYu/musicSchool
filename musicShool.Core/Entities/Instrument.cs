@@ -1,4 +1,4 @@
-﻿namespace musicSchool.Entities
+﻿namespace musicSchool.Core.Entities
 {
     public class Instrument
     {

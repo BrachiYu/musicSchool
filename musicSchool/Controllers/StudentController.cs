@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using musicSchool.Entities;
+using musicSchool.Core.Entities;
+using musicSchool.Data;
+
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace musicSchool.Controllers
+namespace musicSchool.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
