@@ -10,5 +10,9 @@ namespace musicShool.Core.Repositories
     public interface IInstrumentRepository
     {
         List<Instrument> GetInstruments();
+        Instrument GetInstrumentById(int id);
+        Instrument PostInstrument(Instrument instrument);
+        Instrument PutInstrument(int id ,int qty);
+        Instrument DeleteInstrument(int id);
     }
 }

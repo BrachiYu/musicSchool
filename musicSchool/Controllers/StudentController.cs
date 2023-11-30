@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using musicSchool.Core.Entities;
 using musicSchool.Data;
+using musicShool.Service;
+using System.Net;
 
 
 
@@ -12,24 +14,29 @@ namespace musicSchool.API.Controllers
     [ApiController]
     public class StudentController : ControllerBase
     {
-        private DataContext _context;
-
-        public StudentController(DataContext context)
+        private readonly StudentService _studentService;
+        public StudentController(StudentService studentService)
         {
-            _context = context;
+            _studentService = studentService;
         }
+        //private DataContext _context;
+
+       // public StudentController(DataContext context)
+        //{
+          //  _context = context;
+       // }
         // GET: api/<StudentController>
         [HttpGet]
-        public List<Student> Get()
+        public ActionResult Get()
         {
-            return _context.StuList;
+            return Ok(_studentService.GetAllStudents());
         }
 
         // GET api/<StudentController>/5
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
-            var s = _context.StuList.Find(e => e.id == id);
+            var s = _studentService.GetStudentById(id);
             if (s != null)
                return Ok(s);
             return NotFound();
@@ -37,22 +44,21 @@ namespace musicSchool.API.Controllers
 
         // POST api/<StudentController>
         [HttpPost]
-        public Student Post([FromBody] Student stu)
+        public ActionResult Post([FromBody] Student stu)
         {
-            stu.id++;
-            _context.StuList.Add(stu);
-            return stu;
+            var i = _studentService.PostStudent(stu);   
+            if (i != null)
+                return Ok(stu);
+            return NotFound();
         }
 
         // PUT api/<StudentController>/5
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] string ins)
         {
-            var s = _context.StuList.Find(e => e.id == id);
-            if(s != null) { 
-            s.instrument = ins;
-                return Ok();
-            }
+            var i = _studentService.PutStudent(id, ins);
+            if (i != null)
+                return Ok(i);
             return NotFound();
         }
 
@@ -60,10 +66,9 @@ namespace musicSchool.API.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            var del= _context.StuList.Find(e => e.id == id);
+            var del= _studentService.DeleteStudent(id);
             if (del != null) {
-                _context.StuList.Remove(del);
-                return Ok();
+                return Ok(del);
             }
             return NotFound();
         }

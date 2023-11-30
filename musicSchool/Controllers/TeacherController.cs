@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using musicSchool.Data;
 using musicSchool.Core.Entities;
+using musicShool.Service;
+using System.Net;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -10,26 +12,31 @@ namespace musicSchool.API.Controllers
     [ApiController]
     public class TeacherController : ControllerBase
     {
-       private DataContext _context;
-
-        public TeacherController(DataContext context)
+        private readonly TeacherService _teacherService;
+        public TeacherController(TeacherService teacherService)
         {
-            _context = context;
+            _teacherService = teacherService;
         }
+       //private DataContext _context;
+
+       // public TeacherController(DataContext context)
+       // {
+           // _context = context;
+        //}
 
 
         // GET: api/<TeacherController>
         [HttpGet]
-        public List<Teacher> Get()
+        public ActionResult Get()
         {
-            return _context.TeachList;
+            return Ok(_teacherService.GetAllTeachers());
         }
 
         // GET api/<TeacherController>/5
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
-            var tid = _context.TeachList.Find(e => e.id == id);
+            var tid = _teacherService.GetTeacherById(id);
             if (tid != null)
             {
                return Ok(tid);
@@ -39,21 +46,21 @@ namespace musicSchool.API.Controllers
 
         // POST api/<TeacherController>
         [HttpPost]
-        public Teacher Post([FromBody] Teacher teach)
+        public ActionResult Post([FromBody] Teacher teach)
         {
-            teach.id++;
-            _context.TeachList.Add(teach);
-            return teach;
+            var t=_teacherService.PostTeacher(teach);
+            if (t != null)
+                return Ok(teach);
+            return NotFound();
         }
 
         // PUT api/<TeacherController>/5
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] int pri)
         {
-            var tid = _context.TeachList.Find(e => e.id == id);
+            var tid = _teacherService.PutTeacher(id, pri);
             if (tid != null) { 
-               tid.price = pri;
-                return Ok();
+                return Ok(tid);
             }
             return NotFound();
         }
@@ -75,9 +82,8 @@ namespace musicSchool.API.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            var tid = _context.TeachList.Find(e => e.id == id);
+            var tid = _teacherService.DeleteTeacher(id);
             if(tid != null) {
-                _context.TeachList.Remove(tid);
                 return Ok();
             }
             return NotFound();
