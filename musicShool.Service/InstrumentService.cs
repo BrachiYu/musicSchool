@@ -1,10 +1,11 @@
 ﻿using musicSchool.Core.Entities;
 using musicShool.Core.Repositories;
+using musicShool.Core.Service;
 using System.Net;
 
 namespace musicShool.Service
 {
-    public class InstrumentService
+    public class InstrumentService:IInstrumentService
     {
         private readonly IInstrumentRepository _instrumentRepository;
         public InstrumentService(IInstrumentRepository instrumentRepository)

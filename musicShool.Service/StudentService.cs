@@ -1,5 +1,6 @@
 ﻿using musicSchool.Core.Entities;
 using musicShool.Core.Repositories;
+using musicShool.Core.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace musicShool.Service
 {
-    public class StudentService
+    public class StudentService:IStudentService
     {
         private readonly IStudentRepository _studentRepository;
         public StudentService(IStudentRepository studentRepository)
