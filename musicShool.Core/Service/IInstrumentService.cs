@@ -10,5 +10,9 @@ namespace musicShool.Core.Service
     public interface IInstrumentService
     {
         List<Instrument>GetAllInstruments();
+        Instrument GetInstrumentById(int id);
+        Instrument PostInstrument(Instrument instrument);
+        Instrument PutInstrument(int id, int qty);
+        Instrument DeleteInstrument(int id);
     }
 }

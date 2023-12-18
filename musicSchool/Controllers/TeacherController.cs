@@ -3,6 +3,7 @@ using musicSchool.Data;
 using musicSchool.Core.Entities;
 using musicShool.Service;
 using System.Net;
+using musicShool.Core.Service;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,7 +13,7 @@ namespace musicSchool.API.Controllers
     [ApiController]
     public class TeacherController : ControllerBase
     {
-        private readonly TeacherService _teacherService;
+        private readonly ITeacherService _teacherService;
         public TeacherController(TeacherService teacherService)
         {
             _teacherService = teacherService;

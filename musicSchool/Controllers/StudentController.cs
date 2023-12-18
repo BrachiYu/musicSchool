@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using musicSchool.Core.Entities;
 using musicSchool.Data;
+using musicShool.Core.Service;
 using musicShool.Service;
 using System.Net;
 
@@ -14,7 +15,7 @@ namespace musicSchool.API.Controllers
     [ApiController]
     public class StudentController : ControllerBase
     {
-        private readonly StudentService _studentService;
+        private readonly IStudentService _studentService;
         public StudentController(StudentService studentService)
         {
             _studentService = studentService;

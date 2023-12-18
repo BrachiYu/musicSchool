@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using musicSchool.Core.Entities;
 using musicSchool.Data;
+using musicShool.Core.Service;
 using musicShool.Service;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -10,7 +11,7 @@ namespace musicSchool.API.Controllers
     [ApiController]
     public class InstrumentController : ControllerBase
     {
-        private readonly InstrumentService _instrumentService;
+        private readonly IInstrumentService _instrumentService;
         public InstrumentController(InstrumentService instrumentService)
         {
             _instrumentService = instrumentService;

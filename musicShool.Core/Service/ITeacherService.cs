@@ -1,4 +1,6 @@
-﻿using System;
+﻿using musicSchool.Core.Entities;
+using musicShool.Core.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,10 @@ namespace musicShool.Core.Service
 {
     public interface ITeacherService
     {
+        List<Teacher> GetAllTeachers();
+        Teacher GetTeacherById(int id);
+        Teacher PostTeacher(Teacher teach);
+        Teacher PutTeacher(int id, int pri);
+        Teacher DeleteTeacher(int id);
     }
 }
