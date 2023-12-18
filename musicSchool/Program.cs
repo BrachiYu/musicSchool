@@ -1,6 +1,7 @@
 using musicSchool.API;
 using musicSchool.Data;
 using musicShool.Core.Repositories;
+using musicShool.Core.Service;
 using musicShool.Service;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,13 +16,14 @@ builder.Services.AddCors(opt => opt.AddPolicy("Policy", policy => {
 policy.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
 }));
 
-builder.Services.AddScoped<InstrumentService>();
-builder.Services.AddScoped<TeacherService>();
-builder.Services.AddScoped<StudentService>();
+builder.Services.AddScoped<IInstrumentService,InstrumentService>();
+builder.Services.AddScoped<ITeacherService, TeacherService>();
+builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IInstrumentRepository, InstrumentRepository>();
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
 builder.Services.AddSingleton<DataContext>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
