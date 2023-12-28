@@ -14,16 +14,11 @@ namespace musicSchool.API.Controllers
     public class TeacherController : ControllerBase
     {
         private readonly ITeacherService _teacherService;
-        public TeacherController(TeacherService teacherService)
+        public TeacherController(ITeacherService teacherService)
         {
             _teacherService = teacherService;
         }
-       //private DataContext _context;
-
-       // public TeacherController(DataContext context)
-       // {
-           // _context = context;
-        //}
+       
 
 
         // GET: api/<TeacherController>
@@ -38,7 +33,7 @@ namespace musicSchool.API.Controllers
         public ActionResult Get(int id)
         {
             var tid = _teacherService.GetTeacherById(id);
-            if (tid != null)
+            if (tid is not null)
             {
                return Ok(tid);
             }
@@ -50,44 +45,30 @@ namespace musicSchool.API.Controllers
         public ActionResult Post([FromBody] Teacher teach)
         {
             var t=_teacherService.PostTeacher(teach);
-            if (t != null)
+            if (t is not null)
                 return Ok(teach);
             return NotFound();
         }
 
         // PUT api/<TeacherController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] int pri)
+        public ActionResult Put(int id, [FromBody] Teacher teach)
         {
-            var tid = _teacherService.PutTeacher(id, pri);
-            if (tid != null) { 
+            var tid = _teacherService.PutTeacher(id, teach);
+            if (tid is not null) { 
                 return Ok(tid);
             }
             return NotFound();
         }
 
-        // PUT api/<TeacherController>/5
-        //[HttpPut("{id}")]
-        //public ActionResult Put(int id, [FromBody] string ins)
-        //{
-        //    var tid = teachers.Find(e => e.id == id);
-        //    if (tid != null)
-        //    {
-        //        tid.instrument = ins;
-        //        return Ok();
-        //    }
-        //    return NotFound();
-        //}
-
-        // DELETE api/<TeacherController>/5
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
             var tid = _teacherService.DeleteTeacher(id);
-            if(tid != null) {
-                return Ok();
+            if(tid is null) {
+                return NotFound();  
             }
-            return NotFound();
+            return NoContent();
         }
     }
 }

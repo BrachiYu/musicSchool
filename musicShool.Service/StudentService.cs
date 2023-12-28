@@ -26,12 +26,12 @@ namespace musicShool.Service
         }
         public Student PostStudent(Student student)
         {
-            student.id++;
+            
             return _studentRepository.PostStudent(student);
         }
-        public Student PutStudent(int id, String ins)
+        public Student PutStudent(int id, Student stu)
         {
-            return _studentRepository.PutStudent(id, ins);
+            return _studentRepository.PutStudent(id, stu);
         }
         public Student DeleteStudent(int id)
         {

@@ -1,33 +1,19 @@
-﻿using musicSchool.Core.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using musicSchool.Core.Entities;
 
 namespace musicSchool.Data;
 
-public class DataContext
+public class DataContext:DbContext
 {
-    public List<Instrument> InsList { get; set; }
-    public List<Student> StuList { get; set; }
-    public List<Teacher> TeachList { get; set; }
+    public DbSet<MusicList> MusList { get; set; }
+    public DbSet<Student> StuList { get; set; }
+    public DbSet<Teacher> TeachList { get; set; }
 
-    public DataContext()
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        InsList = new List<Instrument>();
-        InsList.Add(new Instrument{ id = 1 ,
-        name="defaultName",qty = 0 ,price = 0} );
-        StuList = new List<Student>();
-        StuList.Add(new Student
-        {
-            id = 1,
-            name = "defaultName",
-            instrument = "defaultInstrument",
-            age = 0
-        });
-        TeachList = new List<Teacher>();
-        TeachList.Add(new Teacher
-        {
-            id = 1,
-            name = "defaultName",
-            instrument = "defaultInstrument",
-            price = 0
-        });
-}
+        optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=brachi1_sample_db");
+    }
+
+
 }

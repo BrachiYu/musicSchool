@@ -12,7 +12,7 @@ namespace musicShool.Core.Repositories
         List<Teacher>GetAllTeachers();
         Teacher GetTeacherById(int id);
         Teacher PostTeacher(Teacher teacher);
-        Teacher PutTeacher(int id, int pri);
+        Teacher PutTeacher(int id, Teacher teach);
         Teacher DeleteTeacher(int id);
     }
 }

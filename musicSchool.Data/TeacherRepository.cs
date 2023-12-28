@@ -18,34 +18,35 @@ namespace musicSchool.Data
 
         public List<Teacher> GetAllTeachers()
         {
-            return _context.TeachList;
+            return _context.TeachList.ToList();
         }
 
         public Teacher GetTeacherById(int id)
         {
-            var i = _context.TeachList.Find(e => e.id == id);
-            return i;
+           return _context.TeachList.Find(id);
         }
 
         public Teacher PostTeacher(Teacher teacher)
         {
             _context.TeachList.Add(teacher);
+            _context.SaveChanges();
             return teacher;
         }
-        public Teacher PutTeacher(int id, int pri)
+        public Teacher PutTeacher(int id,Teacher teach)
         {
-            var i = _context.TeachList.Find(e => e.id == id);
-            var ii = i;
-            ii.price = pri;
-            _context.TeachList.Remove(i);
-            _context.TeachList.Add(ii);
-            return ii;
+            var i = _context.TeachList.Find(id);
+            i.Instrument=teach.Instrument;
+            i.Name=teach.Name;
+            i.Price =teach.Price;
+            _context.SaveChanges();
+            return i;
         }
         public Teacher DeleteTeacher(int id)
         {
-            var i = _context.TeachList.Find(e => e.id == id);
+            var i = _context.TeachList.Find(id);
             if (i != null)
                 _context.TeachList.Remove(i);
+            _context.SaveChanges();
             return i;
         }
 

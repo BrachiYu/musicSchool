@@ -13,7 +13,7 @@ namespace musicShool.Core.Service
         List<Teacher> GetAllTeachers();
         Teacher GetTeacherById(int id);
         Teacher PostTeacher(Teacher teach);
-        Teacher PutTeacher(int id, int pri);
+        Teacher PutTeacher(int id, Teacher teach);
         Teacher DeleteTeacher(int id);
     }
 }

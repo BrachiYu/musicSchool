@@ -26,12 +26,11 @@ namespace musicShool.Service
         }
         public Teacher PostTeacher(Teacher teach)
         {
-            teach.id++;
             return _teacherRepository.PostTeacher(teach);
         }
-        public Teacher PutTeacher(int id, int pri)
+        public Teacher PutTeacher(int id, Teacher teach)
         {
-            return _teacherRepository.PutTeacher(id, pri);
+            return _teacherRepository.PutTeacher(id, teach);
         }
         public Teacher DeleteTeacher(int id)
         {
